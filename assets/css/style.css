@@ -28,4 +28,5 @@ main{
     display: inline-flex;
     flex-direction: column;
     width: 23%;
+    height: 800px;
 }
