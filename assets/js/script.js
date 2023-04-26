@@ -1,7 +1,4 @@
-
-
-let search = document.getElementById('search-field');
-    search.addEventListener('submit', renderSearch())
+// tried linking the search field to the url. no errors but its not logging or searching
 
 //this async function with try and catch was specific to this api and wouldnt work with standard fetch
 
@@ -10,14 +7,16 @@ let search = document.getElementById('search-field');
 function renderSearch(ingredients, instructions) {
 const searchElement = document.createElement('ul');
 const searchResults = document.createElement('li');
-const ingredientElement = document.createElement('ul');
+const recipeElement = document.querySelector('#ingredient-section');
 const ingredientList = document.createElement('li');
-const directionElement = document.createElement('div');
 const directionList = document.createElement('ol');
 const directions = document.createElement('li');
 const savedSearches = document.createElement('div');
 
-const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
+let search = document.getElementById('search-field').value;
+console.log(search);
+    
+const recipeSearch = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${search}`
 const options = {
 	method: 'GET',
 	headers: {
@@ -39,20 +38,23 @@ const options = {
 };
 async function fetchFunction(){
     try {
-        const response = await fetch(url, options);
+        const response = await fetch(recipeSearch, options);
         const result = await response.json();
         console.log(result);
         for (var i = 0; i < 5; i++){
             console.log(result.results[i].name);
             var recipeName = result.results[i].name;
             var recipeInstructions = result.results[i].instructions;
+            var recipeCard = document.createElement('div');
+            var recipeTitleTag = document.createElement('h2');
+            recipeTitleTag.textContent = recipeName;
+            recipeCard.appendChild(recipeTitleTag);
             for (var j = 0; j < result.results[i].instructions.length; j++){
                 console.log(result.results[i].instructions[j].display_text);
-                var recipeCard = document.createElement('div');
-                var recipeTitleTag = document.createElement('h2');
-                recipeTitleTag.textContent = recipeName;
-                recipeCard.appendChild(recipeTitleTag);
-                recipeInstructions.document.createElement('p');
+                var instructionsList = recipeInstructions[j].display_text;
+                var instructionsListCard = document.createElement('li');
+                instructionsListCard.textContent = instructionsList;
+                recipeElement.appendChild(instructionsListCard);               
             
             }
                 
@@ -61,6 +63,7 @@ async function fetchFunction(){
         console.error(error);
     }
     }
+    search.addEventListener('submit', renderSearch())
     fetchFunction();
 
 }
