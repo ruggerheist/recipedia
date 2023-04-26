@@ -38,7 +38,7 @@ try {
 fetchFunction();
 
 
-function createPage(ingredients, instructions) {
+function renderSearch(ingredients, instructions) {
 // add ul and li for ingredients. ol and li directions
 const ingredientElement = document.createElement('div');
 const instructionElement = document.createElement('div');
