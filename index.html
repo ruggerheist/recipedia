@@ -5,15 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipedia</title>
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
+<body>        
+    <header>
+        <h1>Recipedia</h1>
+    </header>
     <main>
-        <form id="search-field">
-            <input name="search recipes">
-            <button type="submit" id="search-button">Search</button>
-        </form>
+        <div id="search-section" class="column">            
+            <form id="search-field">
+                <input name="search recipes">
+                <button type="submit" id="search-button">Search</button>
+            </form>       
+        </div>
+        <div id="ingredient-section" class="column">
+            <!-- listed ingredients and recipe instructions -->
+            <h2>Placeholder Text</h2>
+        </div>
+        <div id="amazon-section" class="column">
+            <!-- amazon results with links -->
+            <h2>Placeholder Text</h2>
+        </div>
+        <div id="history-section" class="column">
+            <!-- previously viewed ingredients -->
+            <h2>Placeholder Text</h2>
+        </div>
     </main>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
