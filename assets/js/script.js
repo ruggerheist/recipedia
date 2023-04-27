@@ -3,13 +3,12 @@
 //this async function with try and catch was specific to this api and wouldnt work with standard fetch
 const searchButton = document.getElementById('search-button');
 
-
 async function renderSearch(event) {
     event.preventDefault();
     const searchElement = document.createElement('ul');
     const searchResults = document.createElement('li');
     const recipeElement = document.querySelector('#ingredient-section');
-    const ingredientList = document.createElement('li');
+    const ingredientElement = document.createElement('ul');
     const directionList = document.createElement('ol');
     const directions = document.createElement('li');
     const savedSearches = document.createElement('div');
@@ -40,26 +39,34 @@ async function renderSearch(event) {
             "x-rapidapi-version": "1.2.8"
         }
     };
-        try {
+        try { //api call pulling recipe name, instructions and ingredients
             const response = await fetch(recipeSearch, options);
             const result = await response.json();
             console.log(result);
+            var recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector
+            recipeCard.innerHTML = '';
             for (var i = 0; i < 5; i++) {
                 console.log(result.results[i].name);
                 var recipeName = result.results[i].name;
                 var recipeInstructions = result.results[i].instructions;
-                var recipeCard = document.createElement('div'); // this needs getElement or querySelector
+                recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector
                 var recipeTitleTag = document.createElement('h2');
                 recipeTitleTag.textContent = recipeName;
                 recipeCard.appendChild(recipeTitleTag);
                 for (var j = 0; j < result.results[i].instructions.length; j++) {
                     console.log(result.results[i].instructions[j].display_text);
-                    var ingredients = result.results.sections[i].components;
-                    console.log(ingredients); // error on line 56, console log only displaying 1 recipe
+                    var ingredients = result.results[i].sections[0].components[j];
+                    console.log(ingredients); //console log only displaying 1 recipe undefined in console
                     var instructionsList = recipeInstructions[j].display_text;
                     var instructionsListCard = document.createElement('li');
                     instructionsListCard.textContent = instructionsList;
                     recipeElement.appendChild(instructionsListCard);
+                    for (var k = 0; k < result.results[i].sections[0].components[k].length; k++){
+                        console.log(result.results[i].sections[0].components[k]);
+                        var ingredientListCard = result.results[i].sections[0].components[k];
+                        ingredientListCard = document.createElement('li');
+                        ingredientListCard.textContent = ingredientElement.appendChild(ingredientListCard);
+                    }
 
                 }
 
