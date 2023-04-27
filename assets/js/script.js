@@ -13,6 +13,7 @@ const directionList = document.createElement('ol');
 const directions = document.createElement('li');
 const savedSearches = document.createElement('div');
 
+
 let search = document.getElementById('search-field').value;
 console.log(search);
     
