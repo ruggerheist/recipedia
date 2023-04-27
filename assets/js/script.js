@@ -13,6 +13,7 @@ async function renderSearch(event) {
     const directionList = document.createElement('ol');
     const directions = document.createElement('li');
     const savedSearches = document.createElement('div');
+
     
     console.log('hello');
 
