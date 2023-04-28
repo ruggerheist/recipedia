@@ -13,30 +13,16 @@ async function renderSearch(event) {
     const directions = document.createElement('li');
     const savedSearches = document.createElement('div');
 
-    
-    console.log('hello');
-
     let search = document.getElementById('search-input').value;
     console.log(search);
 
-    const recipeSearch = `https://tasty.p.rapidapi.com/recipes/list?from=0&size20&q=${search}`
+    const recipeSearch = `https://recipe-by-api-ninjas.p.rapidapi.com/v1/recipe?query=${search}`;
     const options = {
         method: 'GET',
         headers: {
             'content-type': 'application/octet-stream',
             'X-RapidAPI-Key': 'effefb22a0mshedad0fade81d69ep1bd3e5jsn76027a95a97b',
-            'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
-            "access-control-allow-credentials": "true",
-            "access-control-allow-headers": "ver",
-            "access-control-allow-methods": "GET, POST",
-            "access-control-allow-origin": "*",
-            "connection": "keep-alive",
-            "content-type": "application/json",
-            "date": "Fri, 18 Feb 2022 07:08:16 GMT",
-            "server": "RapidAPI-1.2.8",
-            "transfer-encoding": "chunked",
-            "x-rapidapi-region": "AWS - ap-southeast-1",
-            "x-rapidapi-version": "1.2.8"
+            'X-RapidAPI-Host': 'recipe-by-api-ninjas.p.rapidapi.com'
         }
     };
         try { //api call pulling recipe name, instructions and ingredients
@@ -46,30 +32,21 @@ async function renderSearch(event) {
             var recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector
             recipeCard.innerHTML = '';
             for (var i = 0; i < 5; i++) {
-                console.log(result.results[i].name);
-                var recipeName = result.results[i].name;
-                var recipeInstructions = result.results[i].instructions;
+                console.log(result[i].title);
+                var recipeName = result[i].title;
+                var recipeInstructions = result[i].instructions;
                 recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector
                 var recipeTitleTag = document.createElement('h2');
+                var instructionsList = document.createElement('li');
+                instructionsList.textContent = result[i].instructions;
+                recipeElement.appendChild(instructionsList);
                 recipeTitleTag.textContent = recipeName;
                 recipeCard.appendChild(recipeTitleTag);
-                for (var j = 0; j < result.results[i].instructions.length; j++) {
-                    console.log(result.results[i].instructions[j].display_text);
-                    var ingredients = result.results[i].sections[0].components[j];
-                    console.log(ingredients); //console log only displaying 1 recipe undefined in console
-                    var instructionsList = recipeInstructions[j].display_text;
-                    var instructionsListCard = document.createElement('li');
-                    instructionsListCard.textContent = instructionsList;
-                    recipeElement.appendChild(instructionsListCard);
-                    for (var k = 0; k < result.results[i].sections[0].components[k].length; k++){
-                        console.log(result.results[i].sections[0].components[k]);
-                        var ingredientListCard = result.results[i].sections[0].components[k];
-                        ingredientListCard = document.createElement('li');
-                        ingredientListCard.textContent = ingredientElement.appendChild(ingredientListCard);
-                    }
-
-                }
-
+                var ingredients = result[i].ingredients;
+                var ingredientListCard = result[i].ingredients;
+                ingredientListCard = document.createElement('li');
+                ingredientListCard.textContent = ingredients;
+                ingredientElement.appendChild(ingredientListCard);
             }
         } catch (error) {
             console.error(error);
