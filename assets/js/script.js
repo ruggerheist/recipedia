@@ -1,12 +1,17 @@
 const searchButton = document.getElementById('search-button');
+const recipeElement = document.querySelector('#directions-section');
+const ingredientElement = document.getElementById('ingredient-section');
+const recipeTitle = document.querySelector('.recipe-name');
+//const recipes = [];
+
+searchButton.addEventListener('click', renderSearch);
+
 
 async function renderSearch(event) {
     event.preventDefault();
     /* const searchElement = document.createElement('ul');
-    const searchResults = document.createElement('li'); */
-    const recipeElement = document.querySelector('#directions-section');
-    const ingredientElement = document.getElementById('ingredient-section');
-    /* const instructionsElement = document.createElement('ol');
+    const searchResults = document.createElement('li');   
+    const instructionsElement = document.createElement('ol');
     const directions = document.createElement('li');
     const savedSearches = document.createElement('div'); */
 
@@ -47,9 +52,19 @@ async function renderSearch(event) {
         } catch (error) {
             console.error(error);
         }
-    //}
-
-    //fetchFunction();
-
 }
-searchButton.addEventListener('click', renderSearch);
+
+/* function renderResults(recipeResults) {
+    recipeTitle.innerHTML = '';
+    recipeResults.forEach(city => {
+      const titleElement = document.createElement('button');
+     titleElement.textContent = city;
+     titleElement.classList.add('saved-search-btn');
+     titleElement.dataset.city = city;
+     titleElement.addEventListener('click', (event) =>{
+        const cityName = event.target.dataset.city;
+        document.getElementById('search').value = cityName;
+        renderResults(event);
+      });
+    });
+  } */
