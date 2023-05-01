@@ -10,7 +10,7 @@ header{
     justify-content: center;
     font-size: 2em;
     padding: 10px;
-    /* Adding font style later */
+    font-family: 'Pacifico', cursive;
 }
 
 /* PLACEHOLDER */
@@ -28,6 +28,7 @@ main{
     display: inline-flex;
     flex-direction: column;
     width: 23%;
+    border-radius: 10px;
 }
 
 #search-aside  {
