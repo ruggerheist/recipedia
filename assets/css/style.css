@@ -28,5 +28,82 @@ main{
     display: inline-flex;
     flex-direction: column;
     width: 23%;
-    height: 800px;
+}
+
+#search-aside  {
+    width: 25%;
+}
+
+#search-input, #search-section, #search-button .search-results {
+    width: 100%;
+}
+
+.r-btn {
+    width: auto;
+    margin: 5px;
+}
+
+.r-btn:focus{
+    background-color: lightgreen;
+}
+
+/* SEARCH BUTTON */
+#search-button{
+    height: 23px;
+    width: 100%;
+}
+
+/* SEARCH RESULTS */
+.search-results{
+    display: flex;
+    flex-direction: column;
+    padding: 10px; 
+}
+
+
+/* INGREDIENT SECTION */
+#ingredient-section{
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* INSTRUCTON SECTION */
+#instructions-section{
+    padding: 10px;
+}
+
+/* MAKING PAGE RESPONSIVE */
+@media screen and (max-width: 768px){
+    main{
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    #search-aside{
+        width: 100%;
+        padding: 20px;
+    }
+
+    #search-button{
+        width: 100%;
+    }
+
+    #instructions-section{
+        width: 100%;
+        padding: 20px;
+        margin: 5px;
+    }
+
+    #nutrition-section{
+        width: 100%;
+        padding: 20px;
+        margin: 5px;
+    }
+
+    #history-section{
+        width: 100%;
+        padding: 20px;
+        margin: 5px;
+    }
 }
