@@ -1,17 +1,17 @@
 const searchButton = document.getElementById('search-button');
-const recipeElement = document.querySelector('#directions-section');
-const ingredientElement = document.getElementById('ingredient-section');
-const recipeTitle = document.querySelector('.recipe-name');
+let instructionSection = document.querySelector('#instructions-section');
+let ingredientSection = document.getElementById('ingredient-section');
+let searchResults = document.querySelector('.search-results'); //change to id in html
 //const recipes = [];
 
-searchButton.addEventListener('click', renderSearch);
+searchButton.addEventListener('click', performSearch);
 
 
-async function renderSearch(event) {
+async function performSearch(event) {
     event.preventDefault();
     /* const searchElement = document.createElement('ul');
     const searchResults = document.createElement('li');   
-    const instructionsElement = document.createElement('ol');
+    /* const instructionsElement = document.createElement('ol');
     const directions = document.createElement('li');
     const savedSearches = document.createElement('div'); */
 
@@ -29,42 +29,45 @@ async function renderSearch(event) {
     };
         try { //api call pulling recipe name, instructions and ingredients
             const response = await fetch(recipeSearch, options);
-            const result = await response.json();
-            console.log(result);
-            var recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector
-            recipeCard.innerHTML = '';
-            for (var i = 0; i < 5; i++) {
-                console.log(result[i].title);
-                var recipeName = result[i].title;
-                var recipeTitleTag = document.createElement('h2');
-                recipeTitleTag.textContent = recipeName;
-                recipeCard.appendChild(recipeTitleTag);
-                recipeCard = document.querySelector('.recipe-name'); // this needs getElement or querySelector 
-                var instructionsList = document.createElement('li');
-                instructionsList.textContent = result[i].instructions;
-                recipeElement.appendChild(instructionsList);                
-                var ingredients = result[i].ingredients;
-                var ingredientListCard = result[i].ingredients;
-                ingredientListCard = document.createElement('li');
-                ingredientListCard.textContent = ingredients;
-                ingredientElement.appendChild(ingredientListCard);
-            }
+            const recipes = await response.json();
+            console.log(recipes);
+            renderRecipeButtons(recipes);
         } catch (error) {
             console.error(error);
         }
-}
+};
 
-/* function renderResults(recipeResults) {
-    recipeTitle.innerHTML = '';
-    recipeResults.forEach(city => {
-      const titleElement = document.createElement('button');
-     titleElement.textContent = city;
-     titleElement.classList.add('saved-search-btn');
-     titleElement.dataset.city = city;
-     titleElement.addEventListener('click', (event) =>{
-        const cityName = event.target.dataset.city;
-        document.getElementById('search').value = cityName;
-        renderResults(event);
-      });
-    });
-  } */
+ function renderRecipeButtons(recipes) {
+    searchResults.innerHTML = '';
+    for (var i = 0; i < 5; i++) {
+        console.log(recipes[i].title);  
+        let recipeButton = document.createElement('button');
+        recipeButton.innerHTML = recipes[i].title;
+        recipeButton.className += 'recipe-btn';
+        recipeButton.addEventListener('click', renderIngredients(recipes[i]));
+        searchResults.appendChild(recipeButton);        
+    }    
+};
+
+function renderIngredients(recipe){
+    ingredientSection.innerHTML = '';    
+    var ingredients = recipe.ingredients.split('|');
+    console.log(ingredients);
+    ingredients.forEach(ingredient => {    
+        var ingredientListItem = document.createElement('li');
+        ingredientListItem.textContent = ingredient;
+        ingredientSection.appendChild(ingredientListItem);
+    })    
+    renderInstructions(recipe);
+};
+
+function renderInstructions(recipe){
+    instructionSection.innerHTML = '';
+    var instructions = recipe.instructions.split('|');
+    instructions.forEach(instruction => {
+        var instructionsListItem = document.createElement('li');
+        instructionsListItem.textContent = instruction;
+        instructionElement.appendChild(instructionsListItem);               
+    })
+     
+};
