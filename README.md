@@ -19,7 +19,7 @@ Using our website is easy. Follow the steps below:
 3.
 
 ## Development Team:
-Richard Heist
+Rick Heist
 Nneif 
 Kevin Taing
 Garrett M
