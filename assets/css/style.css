@@ -29,3 +29,16 @@ main{
     flex-direction: column;
     width: 23%;
 }
+
+#search-aside  {
+    width: 25%;
+}
+
+#search-input, #search-section, #search-button .search-results {
+    width: 100%;
+}
+
+.r-btn {
+    width: auto;
+    margin: 5px;
+}
