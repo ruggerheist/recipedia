@@ -13,6 +13,26 @@ header{
     /* Adding font style later */
 }
 
+/* SEARCH RESULTS */
+.search-results{
+    display: flex;
+    flex-direction: column;
+    padding: 10px; 
+    /* add hover */
+}
+
+/* INGREDIENT SECTION */
+#ingredient-section{
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* INSTRUCTON SECTION */
+#instructions-section{
+    padding: 10px;
+}
+
 /* PLACEHOLDER */
 main div{
     border: 1px solid black; 
@@ -41,4 +61,10 @@ main{
 .r-btn {
     width: auto;
     margin: 5px;
+}
+
+/* SEARCH BUTTON */
+#search-button{
+    height: 23px;
+    width: 358px;
 }
