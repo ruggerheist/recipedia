@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
     text-decoration: none;
+    background-color: #B9EDDD;
 }
 
 header{
@@ -29,6 +30,11 @@ main{
     flex-direction: column;
     width: 23%;
     border-radius: 10px;
+    background-color: #87CBB9;
+}
+
+h2 {
+    background-color: #87CBB9;
 }
 
 #search-aside  {
@@ -52,6 +58,8 @@ main{
 #search-button{
     height: 23px;
     width: 100%;
+    background-color: #569DAA;
+    font-size: 1.1em;
 }
 
 /* SEARCH RESULTS */
