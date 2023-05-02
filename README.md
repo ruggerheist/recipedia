@@ -9,6 +9,7 @@ Built With:
 
 APIs:
 - Tasty API Documentation
+- Nutrition by API Ninja 
 
 ## Usage
 
@@ -19,10 +20,10 @@ Using our website is easy. Follow the steps below:
 3.
 
 ## Development Team:
-Rick Heist
-Nneif 
-Kevin Taing
-Garrett M
-Stefanie Fisher 
+-Rick Heist
+-Nneif Akpunonu
+-Kevin Taing
+-Garrett Moody
+-Stefanie Fisher 
 
 ## License

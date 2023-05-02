@@ -46,12 +46,17 @@ function renderRecipeButtons(recipes) {
 
     //    displaysearchResults(searchResultItems);
 
-    //    function displaysearchResults(searchResultItems){
-    //     searchHistory.innterHTML =""
-    //     for (let i = 0; i< searchResultItems.length; i++){
-    //         const li = document.createElement("li");
-    //         li.textContent = searchResultItems[i];
-    //         searchResults.appendChild(li);
+       function displaysearchResults(searchResultItems){
+        searchHistory.innterHTML =""
+        for (let i = 0; i< searchResultItems.length; i++){
+            const li = document.createElement("li");
+            li.textContent = searchResultItems[i];
+            searchResults.appendChild(li);
+
+            window.addEventListener('load', function() {
+                const searchResultItems = JSON.parse(localStorage.getItem("searchResults")) || [];
+                displaySearchResults(searchResultItems);
+              });
         }
        }
         // JSON.parse(localStorage.getItem("searchResults"));
