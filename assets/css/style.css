@@ -3,6 +3,9 @@
     padding: 0px;
     box-sizing: border-box;
     text-decoration: none;
+}
+
+html{
     background-color: #B9EDDD;
 }
 
@@ -37,7 +40,8 @@ h2 {
 }
 
 #search-section {
-    padding-bottom: 10px;
+    border: 2px solid #577D86;
+    border-radius: 10px;
 }
 
 #search-input, #search-section, #search-button .search-results {
@@ -47,6 +51,9 @@ h2 {
 .r-btn {
     width: auto;
     margin: 5px;
+    font-size: 18px;
+    background-color: #569DAA;
+    border-radius: 5px;
 }
 
 .r-btn:focus{
@@ -59,6 +66,7 @@ h2 {
     width: 100%;
     background-color: #569DAA;
     font-size: 1.1em;
+    border-radius: 5px;
 }
 
 /* SEARCH RESULTS */
@@ -75,6 +83,10 @@ h2 {
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100%;
+}
+
+#ingredients-section li{
+    background-color: #87CBB9;
 }
 
 /* INSTRUCTON SECTION */
