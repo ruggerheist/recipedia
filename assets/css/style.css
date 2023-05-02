@@ -115,19 +115,7 @@ h2 {
         width: 100%;
     }
 
-    #instructions-section{
-        width: 100%;
-        padding: 20px;
-        margin: 5px;
-    }
-
-    #nutrition-section{
-        width: 100%;
-        padding: 20px;
-        margin: 5px;
-    }
-
-    #history-section{
+    .column{
         width: 100%;
         padding: 20px;
         margin: 5px;
