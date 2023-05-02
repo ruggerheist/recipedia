@@ -1,9 +1,8 @@
 const searchButton = document.getElementById('search-button');
 let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
-let searchResults = document.querySelector('.search-results'); 
+let searchResults = document.querySelector('.search-results');
 const maxResults = 10;
-let ingredientString = '';
 
 searchButton.addEventListener('click', performSearch);
 
@@ -19,57 +18,54 @@ async function performSearch(event) {
             'X-RapidAPI-Host': 'recipe-by-api-ninjas.p.rapidapi.com'
         }
     };
-        try { 
-            const response = await fetch(recipeSearch, options);
-            const recipes = await response.json();
-            renderRecipeButtons(recipes);
-        } catch (error) {
-            console.error(error);
-        }
+    try {
+        const response = await fetch(recipeSearch, options);
+        const recipes = await response.json();
+        renderRecipeButtons(recipes);
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 function renderRecipeButtons(recipes) {
     searchResults.innerHTML = '';
-    for (var i = 0; i < maxResults; i++) { 
+    for (let i = 0; i < maxResults; i++) {
         let recipeButton = document.createElement('button');
         recipeButton.innerHTML = recipes[i].title;
         recipeButton.id += `recipe-btn-${i}`;
         recipeButton.className += 'r-btn';
-        recipeButton.addEventListener('click', function (){
-            var id = recipeButton.id.split('-')[2];           
-            renderIngredients(recipes[id])});
-        searchResults.appendChild(recipeButton);        
-    }    
+        recipeButton.addEventListener('click', function () {
+            let id = recipeButton.id.split('-')[2];
+            renderIngredients(recipes[id])
+        });
+        searchResults.appendChild(recipeButton);
+    }
 };
 
-function renderIngredients(recipe){
-    ingredientSection.innerHTML = '';    
-    var ingredients = recipe.ingredients.split('|');
-    ingredients.forEach(ingredient => {    
-        var ingredientListItem = document.createElement('li');
+function renderIngredients(recipe) {
+    ingredientSection.innerHTML = '';
+    let ingredients = recipe.ingredients.split('|');
+    ingredients.forEach(ingredient => {
+        let ingredientListItem = document.createElement('li');
         ingredientListItem.textContent = ingredient;
         ingredientSection.appendChild(ingredientListItem);
     })
-    console.log(ingredients);   
-    ingredientString = ingredients.join(' '); 
-    returnNutrition();
     renderInstructions(recipe);
 };
 
-function renderInstructions(recipe){
-    var instructions = recipe.instructions;    
+function renderInstructions(recipe) {
+    let instructions = recipe.instructions;
     instructionSection.innerHTML = instructions;
-    console.log(instructions);
 };
 
 //TO DO:
-//style recipe buttons so the one that is clicked is highlighted in some way for the user to know what recipe theyre on
-//link ingredients return to the nutrition api
 //add local storage
 //add readme
 //style page
+// Defining the API URL and headers
+let nutritionListItem = document.querySelector('.nutrition-list-item');
 
-async function returnNutrition() {
+async function returnNutrition(ingredientString) {
     const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${ingredientString}`;
     console.log(url);
     const options = {
@@ -89,22 +85,74 @@ async function returnNutrition() {
         console.error(error);
     }
 };
+returnNutrition('chicken')
+function renderNutrition(result) {
+    for (let i = 0; i < result.length; i++) {
+        let currentFood = result[i];
+        console.log(currentFood.name);
+        console.log(currentFood.calories);
+        console.log(currentFood.carbs);
+        console.log(currentFood.cholesterol);
+        console.log(currentFood.saturated_fat);
+        console.log(currentFood.fat);
+        console.log(currentFood.sugar);
+        console.log(currentFood.serving_size);
+        console.log(currentFood.sodium);
+        console.log(currentFood.protein);
+        console.log(currentFood.fiber);
+        console.log(currentFood.potassium);
 
-function renderNutrition(result){
-    for (var i = 0; i < result.length; i++){
-        console.log(result[i].name);
-        console.log(result[i].calories);
-        var ingredientName = result[i].name;
-        var ingredientCalories = result[i].calories;
-        var ingredientCarbs = result[i].carbohydrates_total_g;
-        var ingredientChol = result[i].cholesterol_mg;
-        var ingredientSatFat = result[i].fat_saturated_g;        
-        var ingredientFat = result[i].fat_total_g;
-        var ingredientSugar = result[i].sugar_g;
-        var ingredientServe = result[i].serving_size_g;
-        var ingredientSodium = result[i].sodium_mg;
-        var ingredientProtein = result[i].protein_g;
-        var ingredientFiber = result[i].fiber_g;
-        var ingredientPotassium = result[i].potassium_mg;
+        let cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body");
+
+        let ingredientName = document.createElement("h2");
+        ingredientName.textContent = `${currentFood.name}`;
+        cardBody.append(ingredientName);
+
+        let ingredientCalories = document.createElement("p");
+        ingredientCalories.textContent = `calories: ${currentFood.calories}`;
+        cardBody.append(ingredientCalories);
+
+        let ingredientCarbs = document.createElement("p");
+        ingredientCarbs.textContent = `carbs: ${currentFood.carbs}`;
+        cardBody.append(ingredientCarbs);
+
+        let ingredientCholesterol = document.createElement("p");
+        ingredientCholesterol.textContent = `cholesterol: ${currentFood.cholesterol}`;
+        cardBody.append(ingredientCholesterol);
+
+        let ingredientSatFat = document.createElement("p");
+        ingredientSatFat.textContent = `saturated fat: ${currentFood.saturated_fat}`;
+        cardBody.append(ingredientSatFat);
+
+        let ingredientFat = document.createElement("p");
+        ingredientFat.textContent = `fat: ${currentFood.fat}`;
+        cardBody.append(ingredientFat);
+
+        let ingredientSugar = document.createElement("p");
+        ingredientSugar.textContent = `sugar: ${currentFood.sugar}`;
+        cardBody.append(ingredientSugar);
+
+        let ingredientServe = document.createElement("p");
+        ingredientServe.textContent = `serve: ${currentFood.serving_size}`;
+        cardBody.append(ingredientServe);
+
+        let ingredientSodium = document.createElement("p");
+        ingredientSodium.textContent = `sodium: ${currentFood.sodium}`;
+        cardBody.append(ingredientSodium);
+
+        let ingredientProtein = document.createElement("p");
+        ingredientProtein.textContent = `protein: ${currentFood.protein}`;
+        cardBody.append(ingredientProtein);
+
+        let ingredientFiber = document.createElement("p");
+        ingredientFiber.textContent = `fiber: ${currentFood.fiber}`;
+        cardBody.append(ingredientFiber);
+
+        let ingredientPotassium = document.createElement("p");
+        ingredientPotassium.textContent = `potassium: ${currentFood.potassium}`;
+        cardBody.append(ingredientPotassium);
+
+        nutritionListItem.append(cardBody);
     }
-}
+};
