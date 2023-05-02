@@ -38,7 +38,19 @@ function renderRecipeButtons(recipes) {
         recipeButton.addEventListener('click', function (){
             var id = recipeButton.id.split('-')[2];           
             renderIngredients(recipes[id])});
-        searchResults.appendChild(recipeButton);        
+        searchResults.appendChild(recipeButton); 
+        
+        var userInput = document.getElementById("search-input").value;localStorage.setItem("searched", userInput);
+        var userInput = document.getElementById("search-input").value;
+        localStorage.setItem("searched", userInput);
+
+       displaysearchResults(searchResultItems);
+
+       function displaysearchResults(searchResultItems){
+        searchHistory.innterHTML =""
+        for (let i = 0; i< search)
+       }
+        // JSON.parse(localStorage.getItem("searchResults"));
     }    
 };
 
@@ -49,12 +61,21 @@ function renderIngredients(recipe){
         var ingredientListItem = document.createElement('li');
         ingredientListItem.textContent = ingredient;
         ingredientSection.appendChild(ingredientListItem);
+
+      
+        // localStorage.setItem("searchResults", JSON.stringify(searchResults))
+
+        
+
     })
     console.log(ingredients);   
     ingredientString = ingredients.join(' '); 
     returnNutrition();
-    renderInstructions(recipe);
+    renderInstructions(recipe);  
+
 };
+
+
 
 function renderInstructions(recipe){
     var instructions = recipe.instructions;    
