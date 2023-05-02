@@ -14,12 +14,6 @@ header{
     font-family: 'Pacifico', cursive;
 }
 
-/* PLACEHOLDER */
-main div{
-    border: 1px solid black; 
-}
-/*=============*/
-
 main{
     display: flex;
     justify-content: space-evenly;
@@ -31,6 +25,7 @@ main{
     width: 23%;
     border-radius: 10px;
     background-color: #87CBB9;
+    border: 2px solid #577D86;
 }
 
 h2 {
@@ -39,6 +34,10 @@ h2 {
 
 #search-aside  {
     width: 25%;
+}
+
+#search-section {
+    padding-bottom: 10px;
 }
 
 #search-input, #search-section, #search-button .search-results {
@@ -75,10 +74,13 @@ h2 {
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+    width: 100%;
 }
 
 /* INSTRUCTON SECTION */
-#instructions-section{
+#instructions-section, 
+#nutrition-section,
+#history-section{
     padding: 10px;
 }
 
