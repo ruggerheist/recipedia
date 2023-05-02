@@ -4,6 +4,7 @@ let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results'); 
 const maxResults = 10;
 let ingredientString = '';
+let nutritionSection = document.getElementById('nutrition-section');
 
 searchButton.addEventListener('click', performSearch);
 
@@ -94,7 +95,10 @@ function renderNutrition(result){
     for (var i = 0; i < result.length; i++){
         console.log(result[i].name);
         console.log(result[i].calories);
+        var nutritionList = document.createElement('li');
         var ingredientName = result[i].name;
+        nutritionList.textContent = ingredientName;
+        nutritionSection.appendChild(nutritionList);
         var ingredientCalories = result[i].calories;
         var ingredientCarbs = result[i].carbohydrates_total_g;
         var ingredientChol = result[i].cholesterol_mg;
@@ -107,4 +111,6 @@ function renderNutrition(result){
         var ingredientFiber = result[i].fiber_g;
         var ingredientPotassium = result[i].potassium_mg;
     }
-}
+};
+
+// made to test repo merges
