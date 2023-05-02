@@ -44,11 +44,15 @@ function renderRecipeButtons(recipes) {
         var userInput = document.getElementById("search-input").value;
         localStorage.setItem("searched", userInput);
 
-       displaysearchResults(searchResultItems);
+    //    displaysearchResults(searchResultItems);
 
-       function displaysearchResults(searchResultItems){
-        searchHistory.innterHTML =""
-        for (let i = 0; i< search)
+    //    function displaysearchResults(searchResultItems){
+    //     searchHistory.innterHTML =""
+    //     for (let i = 0; i< searchResultItems.length; i++){
+    //         const li = document.createElement("li");
+    //         li.textContent = searchResultItems[i];
+    //         searchResults.appendChild(li);
+        }
        }
         // JSON.parse(localStorage.getItem("searchResults"));
     }    
