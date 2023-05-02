@@ -44,6 +44,11 @@ h2 {
     border-radius: 10px;
 }
 
+#search-input {
+    background: transparent;
+    border: none;
+}
+
 #search-input, #search-section, #search-button .search-results {
     width: 100%;
 }
@@ -87,6 +92,10 @@ h2 {
 
 #ingredients-section li{
     background-color: #87CBB9;
+}
+
+#instructions-section {
+    line-height: 1.5;
 }
 
 /* INSTRUCTON SECTION */
