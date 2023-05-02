@@ -3,6 +3,7 @@ let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results');  
 const maxResults = 10;
+let nutritionSection = document.getElementById('nutrition-section');
 
 searchButton.addEventListener('click', performSearch);
 
