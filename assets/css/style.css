@@ -11,10 +11,11 @@ html{
 
 header{
     display: flex;
-    justify-content: center;
     font-size: 2em;
     padding: 10px;
     font-family: 'Pacifico', cursive;
+    flex-direction: column;
+    align-items: center;
 }
 
 main{
