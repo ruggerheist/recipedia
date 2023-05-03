@@ -64,9 +64,7 @@ function renderSearchHistory() {
         historyElement.addEventListener("click", (event) => {
             var searchItem = event.target.dataset.search;
             document.querySelector(".history-results").value = searchItem;
-            if(searchItem){
-                console.log(searchItem.text);
-            }
+            renderRecipeButtons(search);
         });
     });
 };
