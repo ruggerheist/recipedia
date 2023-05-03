@@ -63,7 +63,10 @@ function renderSearchHistory() {
         searchHistorySection.appendChild(historyElement);
         historyElement.addEventListener("click", (event) => {
             var searchItem = event.target.dataset.search;
-            document.querySelector(".history-results").value = searchItem
+            document.querySelector(".history-results").value = searchItem;
+            if(searchItem){
+                console.log(searchItem.text);
+            }
         });
     });
 };
