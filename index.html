@@ -15,6 +15,7 @@
         <h1>Recipedia 🍕</h1>
     </header>
     <main>
+        <!-- ****** Search bar, results, and listed ingredients ****** -->
         <aside id="search-aside">
         <div id="search-section">            
             <form id="search-field">
@@ -23,20 +24,33 @@
             </form>  
         <div class="search-results"></div>            
         </div>
+        <container><h2>Ingredients</h2>
         <div id="ingredient-section" class="column">
-            <h2>Listed Ingredients</h2>
+            <!-- Listed Ingredients -->
         </div> 
+        </container>
         </aside>  
-        
-        <div id="instructions-section" class="column">
+
+        <!-- ****** Recipe Instructions, Nutrition, and Search History ****** -->
+        <container class="column">
             <h2>Recipe Instructions</h2>
-        </div>
-        <div id="nutrition-section" class="column">
-            <h2>Nutrition</h2>
-        </div>
-        <div id="history-section" class="column">
+            <div id="instructions-section">
+                <!-- Instructions go here -->
+            </div>
+        </container>
+        <container class="column">
+            <h2>Nutrition Facts</h2>
+            <div id="nutrition-section">
+                <div class="nutrition-list-item"></div>
+                <!-- Nutrition Facts go here -->
+            </div>
+        </container>
+        <container class="column">
             <h2>History</h2>
-        </div>
+            <div id="history-section">
+                <!-- History goes here -->
+            </div>
+        </container>
     </main>
     <script src="./assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>

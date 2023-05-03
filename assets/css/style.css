@@ -22,6 +22,10 @@ main{
     justify-content: space-evenly;
 }
 
+h2 {
+    padding: 10px;
+}
+
 .column{
     display: inline-flex;
     flex-direction: column;
@@ -31,10 +35,7 @@ main{
     border: 2px solid #577D86;
 }
 
-h2 {
-    background-color: #87CBB9;
-}
-
+/****** SEARCH SECTION STYLING ******/
 #search-aside  {
     width: 25%;
 }
@@ -65,7 +66,6 @@ h2 {
     background-color: lightgreen;
 }
 
-/* SEARCH BUTTON */
 #search-button{
     height: 23px;
     width: 100%;
@@ -74,7 +74,6 @@ h2 {
     border-radius: 5px;
 }
 
-/* SEARCH RESULTS */
 .search-results{
     display: flex;
     flex-direction: column;
@@ -82,7 +81,7 @@ h2 {
 }
 
 
-/* INGREDIENT SECTION */
+/****** BOX STYLING ******/
 #ingredient-section{
     padding-left: 10px;
     padding-top: 10px;
@@ -90,15 +89,10 @@ h2 {
     width: 100%;
 }
 
-#ingredients-section li{
-    background-color: #87CBB9;
-}
-
 #instructions-section {
     line-height: 1.5;
 }
 
-/* INSTRUCTON SECTION */
 #instructions-section, 
 #nutrition-section,
 #history-section{
@@ -121,19 +115,7 @@ h2 {
         width: 100%;
     }
 
-    #instructions-section{
-        width: 100%;
-        padding: 20px;
-        margin: 5px;
-    }
-
-    #nutrition-section{
-        width: 100%;
-        padding: 20px;
-        margin: 5px;
-    }
-
-    #history-section{
+    .column{
         width: 100%;
         padding: 20px;
         margin: 5px;
