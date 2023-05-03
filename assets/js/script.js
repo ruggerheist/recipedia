@@ -44,7 +44,7 @@ function renderRecipeButtons(recipes) {
         var userInput = document.getElementById("search-input").value;
         localStorage.setItem("searched", userInput);
 
-    //    displaysearchResults(searchResultItems);
+    //   var displaysearchResults = displaysearchResults(searchResultItems);
 
        function displaysearchResults(searchResultItems){
         searchHistory.innterHTML =""
@@ -59,7 +59,7 @@ function renderRecipeButtons(recipes) {
               });
         }
        }
-        // JSON.parse(localStorage.getItem("searchResults"));
+        JSON.parse(localStorage.getItem("searchResults"));
     }    
 };
 
