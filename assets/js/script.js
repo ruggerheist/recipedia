@@ -86,6 +86,7 @@ async function returnNutrition() {
     }
 };
  function renderNutrition(result){
+    nutritionSection.innerHTML = "";
     for (var i = 0; i < result.length; i++){
         let currentFood = result[i];
         console.log(result[i].name);
@@ -140,12 +141,13 @@ async function returnNutrition() {
         ingredientPotassium = document.createElement("p");
         ingredientPotassium.textContent = `potassium: ${currentFood.potassium_mg}`;
         nutritionSection.append(ingredientPotassium);
+
+          
         
+       
+          
  } 
 };
-
-
-
 
 
 
