@@ -3,6 +3,8 @@ let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results');
 const maxResults = 10;
+let ingredientString = '';
+let nutritionSection = document.getElementById('nutrition-section');
 
 searchButton.addEventListener('click', performSearch);
 
@@ -85,53 +87,85 @@ async function returnNutrition() {
 };
  function renderNutrition(result){
     for (var i = 0; i < result.length; i++){
+        let currentFood = result[i];
         console.log(result[i].name);
         console.log(result[i].calories);
-        var nutritionList = document.createElement('ul');
+        let nutritionList = document.createElement("div");
+        nutritionList.setAttribute("class", "card-body");
         var ingredientName = result[i].name;
-        var name = 
-        nutritionList.textContent = ingredientName;
-        nutritionSection.appendChild(nutritionList);
+        ingredientName = document.createElement("h2");
+        ingredientName.textContent = `${currentFood.name}`;
+        nutritionSection.append(ingredientName);
         var ingredientCalories = result[i].calories;
-        nutritionList.textContent = ingredientCalories;
-        nutritionSection.appendChild(nutritionList);
+        ingredientCalories = document.createElement("p");
+        ingredientCalories.textContent = `calories: ${currentFood.calories}`;
+        nutritionSection.append(ingredientCalories);
         var ingredientCarbs = result[i].carbohydrates_total_g;
-        nutritionList.textContent = ingredientCarbs;
-        nutritionSection.appendChild(nutritionList);
-        var ingredientChol = result[i].cholesterol_mg;
-        nutritionList.textContent = ingredientChol;
-        nutritionSection.appendChild(nutritionList);
+        ingredientCarbs = document.createElement("p");
+        ingredientCarbs.textContent = `carbs: ${currentFood.carbohydrates_total_g}`;
+        nutritionSection.append(ingredientCarbs);
+        var ingredientCholesterol = result[i].cholesterol_mg;
+        ingredientCholesterol = document.createElement("p");
+        ingredientCholesterol.textContent = `cholesterol: ${currentFood.cholesterol_mg}`;
+        nutritionSection.append(ingredientCholesterol);
         var ingredientSatFat = result[i].fat_saturated_g;
-        nutritionList.textContent = ingredientSatFat;
-        nutritionSection.appendChild(nutritionList);        
+        ingredientSatFat = document.createElement("p");
+        ingredientSatFat.textContent = `saturated fat: ${currentFood.fat_saturated_g}`;
+        nutritionSection.append(ingredientSatFat);
         var ingredientFat = result[i].fat_total_g;
-        nutritionList.textContent = ingredientFat;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientFat = document.createElement("p");
+        ingredientFat.textContent = `fat: ${currentFood.fat_total_g}`;
+        nutritionSection.append(ingredientFat);
         var ingredientSugar = result[i].sugar_g;
-        nutritionList.textContent = ingredientSugar;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientSugar = document.createElement("p");
+        ingredientSugar.textContent = `sugar: ${currentFood.sugar_g}`;
+        nutritionSection.append(ingredientSugar);
         var ingredientServe = result[i].serving_size_g;
-        nutritionList.textContent = ingredientServe;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientServe = document.createElement("p");
+        ingredientServe.textContent = `serve: ${currentFood.serving_size_g}`;
+        nutritionSection.append(ingredientServe);
         var ingredientSodium = result[i].sodium_mg;
-        nutritionList.textContent = ingredientSodium;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientSodium = document.createElement("p");
+        ingredientSodium.textContent = `sodium: ${currentFood.sodium_mg}`;
+        nutritionSection.append(ingredientSodium);
         var ingredientProtein = result[i].protein_g;
-        nutritionList.textContent = ingredientProtein;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientProtein = document.createElement("p");
+        ingredientProtein.textContent = `protein: ${currentFood.protein_g}`;
+        nutritionSection.append(ingredientProtein);
         var ingredientFiber = result[i].fiber_g;
-        nutritionList.textContent = ingredientFiber;
-        nutritionSection.appendChild(nutritionList);  
+        ingredientFiber = document.createElement("p");
+        ingredientFiber.textContent = `fiber: ${currentFood.fiber_g}`;
+        nutritionSection.append(ingredientFiber);
         var ingredientPotassium = result[i].potassium_mg;
-        nutritionList.textContent = ingredientPotassium;
-        nutritionSection.appendChild(nutritionList);  
-    } 
+        ingredientPotassium = document.createElement("p");
+        ingredientPotassium.textContent = `potassium: ${currentFood.potassium_mg}`;
+        nutritionSection.append(ingredientPotassium);
+        
+ } 
 };
 
-/* function renderNutrition(result){
-    for (var i = 0; i < result.length; i++)
-    nutritionSection.innerHTML = '';      
-    var nutritionListItem = document.createElement('li');
-    nutritionListItem.textContent = nutrition;
-    nutritionSection.appendChild(nutritionListItem);
-}; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
