@@ -60,6 +60,7 @@ h2 {
     font-size: 18px;
     background-color: #569DAA;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .r-btn:focus{
@@ -72,6 +73,7 @@ h2 {
     background-color: #569DAA;
     font-size: 1.1em;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .search-results{
