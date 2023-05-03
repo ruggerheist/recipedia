@@ -3,8 +3,6 @@ let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results');
 const maxResults = 10;
-let searchHistory ;
-
 let ingredientString = '';
 let nutritionSection = document.getElementById('nutrition-section');
 
@@ -22,129 +20,78 @@ async function performSearch(event) {
             'X-RapidAPI-Host': 'recipe-by-api-ninjas.p.rapidapi.com'
         }
     };
-        try { 
-            const response = await fetch(recipeSearch, options);
-            const recipes = await response.json();
-            renderRecipeButtons(recipes);
-        } catch (error) {
-            console.error(error);
-        }
+    try {
+        const response = await fetch(recipeSearch, options);
+        const recipes = await response.json();
+        renderRecipeButtons(recipes);
+    } catch (error) {
+        console.error(error);
+    }
 };
 function renderRecipeButtons(recipes) {
     searchResults.innerHTML = '';
-    for (var i = 0; i < maxResults; i++) { 
+    for (var i = 0; i < maxResults; i++) {
         let recipeButton = document.createElement('button');
         recipeButton.innerHTML = recipes[i].title;
         recipeButton.id += `recipe-btn-${i}`;
         recipeButton.className += 'r-btn';
-        recipeButton.addEventListener('click', function (){
-            var id = recipeButton.id.split('-')[2];           
-            renderIngredients(recipes[id])});
-        searchResults.appendChild(recipeButton); 
-        
-        // var userInput = document.getElementById("search-input").value;
-        // searchHistory.push(userInput)
-        // localStorage.setItem("searched", JSON.stringify(searchHistory));
-
-      
         recipeButton.addEventListener('click', function () {
-            let id = recipeButton.id.split('-')[2];
+            var id = recipeButton.id.split('-')[2];
             renderIngredients(recipes[id])
         });
         searchResults.appendChild(recipeButton);
     }
     var userInput = document.getElementById("search-input").value;
-    searchHistory.push(userInput)
+    searchHistory.push(userInput);
     localStorage.setItem("searched", JSON.stringify(searchHistory));
-    renderSearchHistory()
+    renderSearchHistory();
 };
 
-// function displaySearchResults(searchResultItems){
-//     var searchHistory = document.querySelector("#history-section")
-//     searchHistory.innerHTML = ""
-
-    // const li = document.createElement("li");
-    // li.textContent = searchResultItems;
-    // searchHistory.appendChild(li);
-
-
-// window.addEventListener('DOMContentLoaded', () => {
 function renderSearchHistory() {
-    var searchResultItems = JSON.parse(localStorage.getItem("searched")) || []
-    searchHistory = searchResultItems
-    var searchRecipe = document.querySelector("#search-field")
-    console.log(searchResultItems)
-    console.log(searchRecipe)
-    // if (searchResultItems !== null) {
-    //     searchResultItems.push(searchRecipe)
-    //     localStorage.setItem("searched", JSON.stringify(searchResultItems))
-    //  }
-     var searchHistorySection = document.querySelector("#history-section")
-     searchHistorySection.innerHTML = ""
-     searchResultItems.forEach(search => {
-        var historyElement = document.createElement("button")
+    var searchResultItems = JSON.parse(localStorage.getItem("searched")) || [];
+    searchHistory = searchResultItems;
+    var searchRecipe = document.querySelector("#search-field");
+    console.log(searchResultItems);
+    console.log(searchRecipe);
+    var searchHistorySection = document.querySelector("#history-section");
+    searchHistorySection.innerHTML = "";
+    searchResultItems.forEach(search => {
+        var historyElement = document.createElement("button");
         historyElement.textContent = search;
         historyElement.dataset.search = search;
-        historyElement.setAttribute("class", "history-results")
+        historyElement.setAttribute("class", "history-results");
         searchHistorySection.appendChild(historyElement);
         historyElement.addEventListener("click", (event) => {
             var searchItem = event.target.dataset.search;
-         document.querySelector (".history-results").value = searchItem
-        })
-     })
-}
-
-renderSearchHistory()
+            document.querySelector(".history-results").value = searchItem
+        });
+    });
+};
+renderSearchHistory();
 
 function renderIngredients(recipe) {
     ingredientSection.innerHTML = '';
-    let ingredients = recipe.ingredients.split('|');
-    ingredients.forEach(ingredient => {
-        let ingredientListItem = document.createElement('li');
-        ingredientListItem.textContent = ingredient;
-        ingredientSection.appendChild(ingredientListItem);
-
-      })
-
-    console.log(ingredients);   
-    ingredientString = ingredients.join(' '); 
-    returnNutrition();
-    renderInstructions(recipe);  
-
-};
-
-
-
-function renderInstructions(recipe){
-    var instructions = recipe.instructions;    
-
-    renderInstructions(recipe);
-        searchResults.appendChild(recipeButton);        
-    }    
-    
-function renderIngredients(recipe){
-    ingredientSection.innerHTML = '';    
     var ingredients = recipe.ingredients.split('|');
-    ingredients.forEach(ingredient => {    
+    ingredients.forEach(ingredient => {
         var ingredientListItem = document.createElement('li');
         ingredientListItem.textContent = ingredient;
         ingredientSection.appendChild(ingredientListItem);
     })
-    console.log(ingredients); 
+    console.log(ingredients);
 
-    ingredientString = ingredients.join(' '); 
+    ingredientString = ingredients.join(' ');
     returnNutrition();
     renderInstructions(recipe);
 };
-function renderInstructions(recipe){
-    var instructions = recipe.instructions;    
+function renderInstructions(recipe) {
+    var instructions = recipe.instructions;
     instructionSection.innerHTML = instructions;
     console.log(instructions);
 };
 //TO DO:
 //style recipe buttons so the one that is clicked is highlighted in some way for the user to know what recipe theyre on
 //link ingredients return to the nutrition api
-//add local storage
+//add local storage with clickable buttons
 //add readme
 //style page
 async function returnNutrition() {
@@ -166,9 +113,9 @@ async function returnNutrition() {
         console.error(error);
     }
 };
- function renderNutrition(result){
+function renderNutrition(result) {
     nutritionSection.innerHTML = '';
-    for (var i = 0; i < result.length; i++){
+    for (var i = 0; i < result.length; i++) {
         let currentFood = result[i];
         console.log(result[i].name);
         console.log(result[i].calories);
@@ -222,32 +169,6 @@ async function returnNutrition() {
         ingredientPotassium = document.createElement("p");
         ingredientPotassium.textContent = `potassium: ${currentFood.potassium_mg} mg`;
         nutritionSection.append(ingredientPotassium);
-        
- } 
+
+    }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
