@@ -11,10 +11,11 @@ html{
 
 header{
     display: flex;
-    justify-content: center;
     font-size: 2em;
     padding: 10px;
     font-family: 'Pacifico', cursive;
+    flex-direction: column;
+    align-items: center;
 }
 
 main{
@@ -22,8 +23,14 @@ main{
     justify-content: space-evenly;
 }
 
-h2 {
+h2{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+h3 {
     padding: 10px;
+    font-size: 28px;
 }
 
 .column{
@@ -60,6 +67,7 @@ h2 {
     font-size: 18px;
     background-color: #569DAA;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .r-btn:focus{
@@ -72,6 +80,7 @@ h2 {
     background-color: #569DAA;
     font-size: 1.1em;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .search-results{
@@ -82,7 +91,9 @@ h2 {
 
 
 /****** BOX STYLING ******/
-#ingredient-section{
+#ingredient-section,
+#nutrition-section,
+#history-section {
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -94,9 +105,25 @@ h2 {
 }
 
 #instructions-section, 
-#nutrition-section,
-#history-section{
+#history-section {
     padding: 10px;
+}
+
+#nutrition-section {
+    column-count: 2;
+}
+
+#nutrition-section p {
+    line-height: 1.2;
+}
+
+.nutrition-box {
+    display: inline-flex;
+    flex-direction: column;
+    width: 38%;
+    border-radius: 10px;
+    background-color: #87CBB9;
+    border: 2px solid #577D86;
 }
 
 /* MAKING PAGE RESPONSIVE */
@@ -115,7 +142,8 @@ h2 {
         width: 100%;
     }
 
-    .column{
+    .column,
+    .nutrition-box{
         width: 100%;
         padding: 20px;
         margin: 5px;
