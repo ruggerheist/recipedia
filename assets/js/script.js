@@ -3,6 +3,8 @@ let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results');
 const maxResults = 10;
+let searchHistory ;
+
 let ingredientString = '';
 let nutritionSection = document.getElementById('nutrition-section');
 
@@ -38,9 +40,88 @@ function renderRecipeButtons(recipes) {
         recipeButton.addEventListener('click', function (){
             var id = recipeButton.id.split('-')[2];           
             renderIngredients(recipes[id])});
+        searchResults.appendChild(recipeButton); 
+        
+        // var userInput = document.getElementById("search-input").value;
+        // searchHistory.push(userInput)
+        // localStorage.setItem("searched", JSON.stringify(searchHistory));
+
+      
+        recipeButton.addEventListener('click', function () {
+            let id = recipeButton.id.split('-')[2];
+            renderIngredients(recipes[id])
+        });
+        searchResults.appendChild(recipeButton);
+    }
+    var userInput = document.getElementById("search-input").value;
+    searchHistory.push(userInput)
+    localStorage.setItem("searched", JSON.stringify(searchHistory));
+    renderSearchHistory()
+};
+
+// function displaySearchResults(searchResultItems){
+//     var searchHistory = document.querySelector("#history-section")
+//     searchHistory.innerHTML = ""
+
+    // const li = document.createElement("li");
+    // li.textContent = searchResultItems;
+    // searchHistory.appendChild(li);
+
+
+// window.addEventListener('DOMContentLoaded', () => {
+function renderSearchHistory() {
+    var searchResultItems = JSON.parse(localStorage.getItem("searched")) || []
+    searchHistory = searchResultItems
+    var searchRecipe = document.querySelector("#search-field")
+    console.log(searchResultItems)
+    console.log(searchRecipe)
+    // if (searchResultItems !== null) {
+    //     searchResultItems.push(searchRecipe)
+    //     localStorage.setItem("searched", JSON.stringify(searchResultItems))
+    //  }
+     var searchHistorySection = document.querySelector("#history-section")
+     searchHistorySection.innerHTML = ""
+     searchResultItems.forEach(search => {
+        var historyElement = document.createElement("button")
+        historyElement.textContent = search;
+        historyElement.dataset.search = search;
+        historyElement.setAttribute("class", "history-results")
+        searchHistorySection.appendChild(historyElement);
+        historyElement.addEventListener("click", (event) => {
+            var searchItem = event.target.dataset.search;
+         document.querySelector (".history-results").value = searchItem
+        })
+     })
+}
+
+renderSearchHistory()
+
+function renderIngredients(recipe) {
+    ingredientSection.innerHTML = '';
+    let ingredients = recipe.ingredients.split('|');
+    ingredients.forEach(ingredient => {
+        let ingredientListItem = document.createElement('li');
+        ingredientListItem.textContent = ingredient;
+        ingredientSection.appendChild(ingredientListItem);
+
+      })
+
+    console.log(ingredients);   
+    ingredientString = ingredients.join(' '); 
+    returnNutrition();
+    renderInstructions(recipe);  
+
+};
+
+
+
+function renderInstructions(recipe){
+    var instructions = recipe.instructions;    
+
+    renderInstructions(recipe);
         searchResults.appendChild(recipeButton);        
     }    
-};
+    
 function renderIngredients(recipe){
     ingredientSection.innerHTML = '';    
     var ingredients = recipe.ingredients.split('|');

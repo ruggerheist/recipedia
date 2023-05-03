@@ -3,6 +3,14 @@
 ## Description
 Using a recipe and a nutrition api, along with using HTML, CSS, and JavaScript, our team has built a website called Recipedia, where the user can enter in a food, such as 'chicken', and have ten recipes be displayed for the user to choose from that will contain what they searched. Once the user click on the one recipe, the list of ingredients will be shown below and next to it, the directions to cook it will be displayed. Across the direction container, there is a nutrition section where the list of nutrition of the ingredients from the recipe the user choose be displayed. In the history section, it will display the previous searches the user made and they will be able to click back on it and look at the recipes again. This solves the issues of users of spending long periods of time searching for a recipe to cook without knowing exactly what they want to make and they will be able to look at the nutritions to see if it will align with what they looking if they are dieting or trying to cut out certain intakes for any reasons. Working on this project help the group learned how to work together on the same goal, communicate with one another, and gave us practice on using branches on GitHub.
 
+This API allows users to search for recipes and get nutritional information for each recipe. The data for this API is sourced from various recipe websites and nutritional databases.
+
+Built With: 
+- HTML/CSS/JAVASCRIPT
+
+APIs:
+- Tasty API Documentation
+- Nutrition by API Ninja 
 
 ## Usage
 Using our website is easy. Follow the steps below:
