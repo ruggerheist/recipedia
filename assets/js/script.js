@@ -1,16 +1,21 @@
 const searchButton = document.getElementById('search-button');
+const maxResults = 10;
 let instructionSection = document.querySelector('#instructions-section');
 let ingredientSection = document.getElementById('ingredient-section');
 let searchResults = document.querySelector('.search-results');
-const maxResults = 10;
 let ingredientString = '';
 let nutritionSection = document.getElementById('nutrition-section');
 
-searchButton.addEventListener('click', performSearch);
-
-async function performSearch(event) {
+//this function unloads the burden of performSearch and allows the history to be recalled by accepting preventDefault and passing functions
+function getStarted(event) {
     event.preventDefault();
-    let search = document.getElementById('search-input').value;
+    performSearch(document.getElementById('search-input').value);
+};
+
+searchButton.addEventListener('click', getStarted);
+
+//this function calls the api to return recipes, ingredients, and instructions for the recipe
+async function performSearch(search) {
     const recipeSearch = `https://recipe-by-api-ninjas.p.rapidapi.com/v1/recipe?query=${search}&offset=${maxResults}`;
     const options = {
         method: 'GET',
@@ -28,6 +33,8 @@ async function performSearch(event) {
         console.error(error);
     }
 };
+
+//this function renders buttons of the recipe titles for each one up to 10. local storage is also being set here
 function renderRecipeButtons(recipes) {
     searchResults.innerHTML = '';
     for (var i = 0; i < maxResults; i++) {
@@ -47,12 +54,10 @@ function renderRecipeButtons(recipes) {
     renderSearchHistory();
 };
 
+//this function is saving the users searches and creating buttons to research later in the history element
 function renderSearchHistory() {
     var searchResultItems = JSON.parse(localStorage.getItem("searched")) || [];
     searchHistory = searchResultItems;
-    var searchRecipe = document.querySelector("#search-field");
-    console.log(searchResultItems);
-    console.log(searchRecipe);
     var searchHistorySection = document.querySelector("#history-section");
     searchHistorySection.innerHTML = "";
     searchResultItems.forEach(search => {
@@ -64,12 +69,13 @@ function renderSearchHistory() {
         historyElement.addEventListener("click", (event) => {
             var searchItem = event.target.dataset.search;
             document.querySelector(".history-results").value = searchItem;
-            renderRecipeButtons(search);
+            performSearch(search);
         });
     });
 };
 renderSearchHistory();
 
+//this function renders the selected recipes ingredients into the ingredient element
 function renderIngredients(recipe) {
     ingredientSection.innerHTML = '';
     var ingredients = recipe.ingredients.split('|');
@@ -78,26 +84,21 @@ function renderIngredients(recipe) {
         ingredientListItem.textContent = ingredient;
         ingredientSection.appendChild(ingredientListItem);
     })
-    console.log(ingredients);
-
+    console.log(ingredients)
     ingredientString = ingredients.join(' ');
     returnNutrition();
     renderInstructions(recipe);
 };
+
+//this function renders the recipes instructions in the instructions element
 function renderInstructions(recipe) {
     var instructions = recipe.instructions;
     instructionSection.innerHTML = instructions;
-    console.log(instructions);
 };
-//TO DO:
-//style recipe buttons so the one that is clicked is highlighted in some way for the user to know what recipe theyre on
-//link ingredients return to the nutrition api
-//add local storage with clickable buttons
-//add readme
-//style page
+
+//this function takes the ingredients from the former api call and searches the nutritional values 
 async function returnNutrition() {
     const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${ingredientString}`;
-    console.log(url);
     const options = {
         method: 'GET',
         headers: {
@@ -108,18 +109,17 @@ async function returnNutrition() {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result);
         renderNutrition(result);
     } catch (error) {
         console.error(error);
     }
 };
+
+//this function takes the returned nutritional values from the api call and displays them in the nutritional element. each ingredient gets its own list of nutritional values
 function renderNutrition(result) {
     nutritionSection.innerHTML = '';
     for (var i = 0; i < result.length; i++) {
         let currentFood = result[i];
-        console.log(result[i].name);
-        console.log(result[i].calories);
         let nutritionList = document.createElement("div");
         nutritionList.setAttribute("class", "card-body");
         var ingredientName = result[i].name;
@@ -170,6 +170,5 @@ function renderNutrition(result) {
         ingredientPotassium = document.createElement("p");
         ingredientPotassium.textContent = `potassium: ${currentFood.potassium_mg} mg`;
         nutritionSection.append(ingredientPotassium);
-
     }
 };
