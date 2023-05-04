@@ -64,8 +64,11 @@ function renderSearchHistory() {
         var historyElement = document.createElement("button");
         historyElement.textContent = search;
         historyElement.dataset.search = search;
+        if(searchResultItems.indexOf(value) == -1){
+            searchResultItems.push(value);
         historyElement.setAttribute("class", "history-results");
         searchHistorySection.appendChild(historyElement);
+        }
         historyElement.addEventListener("click", (event) => {
             var searchItem = event.target.dataset.search;
             document.querySelector(".history-results").value = searchItem;
